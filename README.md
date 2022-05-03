@@ -1,4 +1,8 @@
 
+⚠️ I do not own any right on the images here displayed, if the owners is not ok with me using them, please notify me and I'll remove them. Anyway they are planned to be removed soon in a upcoming commit. ⚠️ 
+
+
+
 ![Alt text](./scaled-logo-uniroma3.jpg "a title")
 ![Alt text](./department.jpg "a title")
 
