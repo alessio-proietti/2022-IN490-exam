@@ -81,9 +81,9 @@ It's better to rely on a tested and reviewed Software Manager for moving smoothl
 
 ![Alt text](./close-encounters-bluray.jpg "Apples-to-Oranges comparison") 
 
+RustyHermit (https://github.com/hermitcore/rusty-hermit) is apparently an attempt to port and modernize _HermitCore's C_  basecode (http://hermitcore.org/) to _Rust_. It is developed by a small internet community lead by researchers at at RWTH-Aachen. The project aims at establish a robust Unikernel candidate for HPC workloads.   
 
-`todo`
-
+The following is merely a description of the _author's personal experience_ with this object.
 
 
 ## Conclusions
