@@ -89,6 +89,16 @@ RustyHermit (https://github.com/hermitcore/rusty-hermit) is apparently an attemp
 
 The following amounts to a mere description of the _author's personal experience_ with this object.
 
+There has been a first round of exploration of RustyHermit potential following step by step the official documentation of the project. Unfortunately fetching RustyHermit's crate from Cargo Repository and using it as a dependency in a blank project resulted in repeatedly unsuccesful compilation attempts, each iteration of the build project introduces new displayed errors and quite unclear messages from the prompts. There have been ebbs and flow of succesful compilations with then unusable "hello world" unikernels or inexplicably failed compilations.
+
+History of this unfruitful quest is documented by the author's (@alessio-proietti) tickets on the official Issue Tracker of the project (https://github.com/hermitcore/rusty-hermit/issues).
+
+Later on, the second phase of the research started with the author initially cloning the original and complete repository of RustyHermit and then compiling the application code of the demo shipped with the repo. This choice was forced after noting that configuration code and building options was present in the repository and the demo apps in fact relied heavily on this fine-tuned _corpus_ of code to work. 
+
+_If it works, don't break it._
+
+
+
 
 ## Conclusions
 
