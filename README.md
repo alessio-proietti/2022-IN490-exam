@@ -6,7 +6,7 @@
 ![Alt text](./scaled-logo-uniroma3.jpg "a title")
 ![Alt text](./department.jpg "a title")
 
-# **IN490** Final Assignment 
+# **IN490** Final Assignment V0.0.1
 ### Title: _Views on "RustyHermit - A Rust-based, lightweight unikernel"_
 ### Author: _Alessio Proietti <<alessio.proietti@stud.uniroma3.it>>_
 
@@ -85,7 +85,9 @@ It's better to rely on a tested and reviewed Software Manager for moving smoothl
 
 ![Alt text](./close-encounters-bluray.jpg "Apples-to-Oranges comparison") 
 
-RustyHermit (https://github.com/hermitcore/rusty-hermit) is apparently an attempt to port and modernize _HermitCore's C_  basecode (http://hermitcore.org/) to _Rust_. It is developed by a small internet community lead by researchers at at RWTH-Aachen. The project aims at establish a robust Unikernel candidate for HPC workloads.   
+RustyHermit (https://github.com/hermitcore/rusty-hermit) is apparently an attempt to port and modernize _HermitCore's C_  basecode (http://hermitcore.org/) to _Rust_. It is developed by a small internet community lead by researchers at at RWTH-Aachen. The project aims at establish a robust Unikernel candidate for HPC workloads.
+
+RustyHermit has a couple of companion projects, one is _uhyve_ (https://github.com/hermitcore/uhyve), that is a custom hypervisor which requires both KVM and a system supporting virtualization and is tailored for RustyHermit-based unikernels, the other is a custom light bootloader (https://github.com/hermitcore/rusty-loader) which is needed when RustyHermit-based unikernels are run with QEMU. 
 
 The following amounts to a mere description of the _author's personal experience_ with this object.
 
@@ -97,12 +99,40 @@ Later on, the second phase of the research started with the author initially clo
 
 _If it works, don't break it._
 
+---
+\ STUB  STUB  STUB  TODO \  
 
+One example app, among those provided as demos, seems to be really interesting. This app is simple HTTP server...
+
+... 
+
+it has been LAUNCHED with...
+```
+$ qemu-system-x86_64 -cpu qemu64,apic,fsgsbase,rdtscp,xsave,xsaveopt,fxsr \
+        -enable-kvm -display none -smp 1 -m 1G -serial stdio \
+        -kernel path_to_loader/rusty-loader \
+        -initrd path_to_app/app \
+        -netdev tap,id=net0,ifname=tap10,script=no,downscript=no,vhost=on \
+        -device virtio-net-pci,netdev=net0,disable-legacy=on
+``` 
+
+errors:
+```
+[LOADER] Unsupported relocation type 6
+[LOADER] BootInfo located at 0x11f188
+[LOADER] Use stack address 0xa000
+[LOADER] Jumping to HermitCore Application Entry Point at 0x101cb80
+```
+
+
+\ STUB TODO \  
+
+---
 
 
 ## Conclusions
 
-RustyHermit is definitely young and unstable for production yet it is promising and a Unikernel working PoC really is needed in the HPC space.
+RustyHermit is definitely young, quite unstable for production yet it is promising and a Unikernel working PoC really would be needed in the HPC space.
 
 Unikernels are not a _Panacea_, nothing is. They are not bound to completely outperform Containers and the best outcome of Unikernels research is, perhaps, a contamination and a (eventually) merge of Containers and Unikernels best intuitions: _Less is more_.
 
