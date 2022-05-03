@@ -83,12 +83,12 @@ It's better to rely on a tested and reviewed Software Manager for moving smoothl
 
 RustyHermit (https://github.com/hermitcore/rusty-hermit) is apparently an attempt to port and modernize _HermitCore's C_  basecode (http://hermitcore.org/) to _Rust_. It is developed by a small internet community lead by researchers at at RWTH-Aachen. The project aims at establish a robust Unikernel candidate for HPC workloads.   
 
-The following is merely a description of the _author's personal experience_ with this object.
+The following amounts to a mere description of the _author's personal experience_ with this object.
 
 
 ## Conclusions
 
-RustyHermit is young and unstable yet promising and it is really needed in the HPC space.
+RustyHermit is definitely young and unstable for production yet it is promising and a Unikernel working PoC really is needed in the HPC space.
 
 Unikernels are not a _Panacea_, nothing is. They are not bound to completely outperform Containers and the best outcome of Unikernels research is, perhaps, a contamination and a (eventually) merge of Containers and Unikernels best intuitions: _Less is more_.
 
