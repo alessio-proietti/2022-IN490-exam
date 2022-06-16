@@ -99,36 +99,57 @@ Later on, the second phase of the research started with the author initially clo
 
 _If it works, don't break it._
 
----
-\ STUB  STUB  STUB  TODO \  
+## A Second Attempt
 
-One example app, among those provided as demos, seems to be really interesting. This app is simple HTTP server...
+More recently the team behind rusty-hermit released a template demo project on which it is possible to iterate towards custom and arbirtary complicated kernels. 
 
-... 
+So the author tried enforcing the connectivity between various instances of rusty-hermit, he failed again. 
 
-it has been LAUNCHED with...
-```
-$ qemu-system-x86_64 -cpu qemu64,apic,fsgsbase,rdtscp,xsave,xsaveopt,fxsr \
-        -enable-kvm -display none -smp 1 -m 1G -serial stdio \
-        -kernel path_to_loader/rusty-loader \
-        -initrd path_to_app/app \
-        -netdev tap,id=net0,ifname=tap10,script=no,downscript=no,vhost=on \
-        -device virtio-net-pci,netdev=net0,disable-legacy=on
-``` 
+What perhaps is interesting is that the vanilla demo (and projects which don't need network) at least compiles and runs. 
+You can find more information in details here https://github.com/hermitcore/rusty-demo.
 
-errors:
-```
-[LOADER] Unsupported relocation type 6
-[LOADER] BootInfo located at 0x11f188
-[LOADER] Use stack address 0xa000
-[LOADER] Jumping to HermitCore Application Entry Point at 0x101cb80
-```
+Anyways I'll report here some steps you should do to make a demo up and running.
+
+1) Be sure to have rustup, QEMU installed as well as NASM assembler which is required to SMP in x86_64 architecture.
+
+2) Clone https://github.com/hermitcore/rusty-demo with `git` and initialize all the submodules, for references https://git-scm.com/book/en/v2/Git-Tools-Submodules.
+
+3) Build the bootloader:
+   ``` 
+   $ cd loader
+   $ cargo xtask build --arch x86_64 --release
+   ```
+1) Build the kernel: 
+   ```
+   $ cargo build \
+   -Zbuild-std=core,alloc,std,panic_abort \
+   -Zbuild-std-features=compiler-builtins-mem \
+   --target x86_64-unknown-hermit \
+   --release
+   ```
 
 
-\ STUB TODO \  
+2) Finally run with QEMU:
+   ```
+   $ qemu-system-x86_64 \
+    -cpu qemu64,apic,fsgsbase,fxsr,rdrand,rdtscp,xsave,xsaveopt \
+    -smp 1 -m 64M \
+    -device isa-debug-exit,iobase=0xf4,iosize=0x04 \
+    -display none -serial stdio \
+    -kernel loader/target/x86_64/release/rusty-loader \
+    -initrd target/x86_64-unknown-hermit/release/hello_world
+   ```
 
----
+## Playing around
+### Envelope Encryption
 
+Envelope encryption is a a cryptographic scheme in which a TTP hosts a hardened keyring with a master key (CMK) inside. A client wants to do encryption and decryption of data but doesn't want to store a key so the procol goes like this: The Server (the TTP) generete a fresh data key on behalf of the client and send it over a secure channel together with an encrypted copy. The client now encrypts his data and makes a tuple of data and corresponding encrypted data key and discard the plaintext data key. The clients store the tuple and later on when it needs to decrypt calls the Server sending over a secure channel the encrypted key and the Server responds sending back the plaintext version. Clients decrypts then discard the plaintext version. I will not discuss how flawed can be Envelope encryption but I want to let you know I assembled a small demo built on rusty-demo importing the Rust `dryoc` cryptographic crate, it worked. 
+
+Maybe in the future it can be made possible to have a networked Envelope Encryption server up and running based on rusty hermit Unikernel; could be interested because unikernels fit for a transient complex object which does heavy encryption/decryption efficiently and safely before fading away.
+
+Here the author's take on Envelope Encryption based on rusty-demo: .
+
+For references, here https://enlear.academy/envelope-encryption-in-aws-d1a03eeed7c  a blog post to review how Envelope Encryption can be built on top of AWS KMS.
 
 ## Conclusions
 
