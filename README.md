@@ -147,7 +147,7 @@ Envelope encryption is a a cryptographic scheme in which a TTP hosts a hardened 
 
 Maybe in the future it can be made possible to have a networked Envelope Encryption server up and running based on rusty hermit Unikernel; could be interested because unikernels fit for a transient complex object which does heavy encryption/decryption efficiently and safely before fading away.
 
-Here the author's take on Envelope Encryption based on rusty-demo: .
+Here the author's take on Envelope Encryption based on rusty-demo: https://github.com/alessio-proietti/envelope-encryption-rusty-demo.
 
 For references, here https://enlear.academy/envelope-encryption-in-aws-d1a03eeed7c  a blog post to review how Envelope Encryption can be built on top of AWS KMS.
 
