@@ -13,7 +13,7 @@
 </br>
 
 ## Virtualization 
-In the long gone days of early July 1974,  Juan Perón, an Argentine army general, politician and President of Argentina died after getting into difficulty following a heart attack. In the same days, thousands of miles away of Argentina, American computer scientists were unlocking the potential of optimal usage of the then called third generation computer systems, e.g. IBM 360/67.
+In the long gone days of early July 1974, Juan Perón, an Argentine army general, politician and President of Argentina died after getting into difficulty following a heart attack. In the same days, thousands of miles away of Argentina, American computer scientists were unlocking the potential of optimal usage of the then called third generation computer systems, e.g. IBM 360/67.
 
 ![Alt text](./IBM36067.jpg "IBM System/360 Model 67 (S/360-67)")
 
@@ -21,7 +21,7 @@ Then a foundational paper of Gerald J. Popek and Robert P. Goldberg finally  app
 
 Its title reads _Formal requirements for virtualizable third generation architectures_ and in the body of the text were posited a set of requirements for a computer architecture to support a legit form of system virtualization.
 
-Virtualization amounts to the creation of a virtual machine (by means of both hardware and software layers) that can virtualize computing resources, such as processors, memory, storage and network connectivity as well as emulating required peripheral devices.
+Virtualization amounts to creation of a virtual machine, by means of both hardware and software layers that can virtualize computing resources, such as processors, memory, storage and network connectivity as well as emulating required peripheral devices.
 
 For a virtualization platform to qualify as such it is mandatory to present at least the following features: 
 
@@ -35,13 +35,11 @@ For a virtualization platform to qualify as such it is mandatory to present at l
 ![Alt text](./panopticon.jpg "Jeremy Bentham's Panopticon")
 
 ## VMs and Containers
-Virtual machines have been a great deal in the old mainframe world and in the early days of the World Wide Web and the commercial Internet too after widespreading demand of hosting services. 
+Virtual machines have been a great deal in the old mainframe world and in the early days of the World Wide Web and the commercial Internet too after widespreading demand of hosting services, also today virtualization importance in exploding _cloud computing_ industry cannot be overstated.
 
-Virtualization importance in then emerging _cloud computing_ industry cannot be overstated and more recently a new paradigm walked into the stage as a promising alternative theory of workload, enabled by so called Operating System-level virtualization (Shared Kernel virtualization). 
+More recently a new paradigm walked into the stage as a promising alternative theory of workload, enabled by so called Operating System-level virtualization (Shared Kernel virtualization). Virtual machines are bulky and need maintenance, proper configuration of software and serious management of software updates. In principle virtual machines could serve as general purpose host but rapidly tend to become high specialized. 
 
-Virtual machines are bulky and need maintenance, proper configuration of software and serious management of software updates. In principle virtual machines could serve as general purpose host but rapidly tend to become high specialized. However also highly specialized VMs usually carry tons of unused, opaque and potentially flawed software, exposing large attack surface. 
-
-It is a flexibility and security nightmare. 
+However also highly specialized VMs usually carry tons of unused, opaque and potentially flawed software, exposing large attack surface. It is a flexibility and security nightmare. 
 
 ![Alt text](./containers.jpg "Apples-to-Oranges comparison")
 
@@ -61,10 +59,9 @@ Being stateless they can be succintly described and arranged with simple DSLs, b
 > Russel C. Pavlicek
  
 Cloud is fat. VMs are overloaded with unpatched, obscure and insecure software and Containers themselves rely on huge kernels, i.e. on large supporting runtimes. 
-
 Moreover, developers usually make every nasty trick they can to wire correctly all the resources the containers need.
 
-The theory of Unikernels propose pretty simple and straightforward strategy. Unikernels are introduced as a new kind of tech which try to coexist with VMs and cointainers while aiming at resolving their deficiencies.  
+The theory of Unikernels introduces a pretty simple and straightforward strategy. Unikernels are introduced as a new kind of tech which try to coexist with VMs and cointainers while aiming at resolving their deficiencies.  
 
 The rationale can be clearly stated: one should include into sandbox objects (containers, jails, VMs) only minimum code application needs to properly function
 
@@ -74,13 +71,9 @@ Unikernels are **Specialized Kernels**.
 
 Implementations of Unikernel technology have only one address space, only one program running inside and all low-level functions compiled directly into the unikernel-app executable and that's why advocates of Unikernels call them _Library Operating Systems_. 
 
-All boils down to a binary with app and support libraries and nothing else.
+All boils down to a binary with app and support libraries and nothing else. It feels like a backward evolution but it is not. 
 
-Apparently it seems like a backward evolution but it is not true. 
-
-Unikernels have less attack surfaces, small footprints and they can be tailored on the precise app they hosts and crucially they boot faster. 
-
-In a world of transient microservices which pop into existence after response triggered by events happening at random by ( see _Internet of things_ ) seems like Unikernels are a must.
+Unikernels have less attack surfaces, small footprints and they can be tailored on the precise app they hosts and crucially they boot faster. In a world of transient microservices which pop into existence after response triggered by events happening at random by ( see _Internet of things_ ) seems like Unikernels are a must.
 
 It is important to highlight how Unikernels have no shell, no alien utilities to exploit, unused drivers or password files to crack and no databases to breach. Though special care is required while debugging Unikernels it can be done efficiently and correctly.
 
@@ -89,9 +82,8 @@ Rust is a "multi-paradigm, general-purpose programming language designed for per
 
 ![Alt text](./rust-logo-blk.svg "Apples-to-Oranges comparison") 
 
-Rust comes in various "flavours": nightly, beta, stable. One should install the _Rust Toolchain_ with the official installer https://rustup.rs/ because one expects to have the possibility to enrich the programming environment easily with additional packages and "components" in order to perform very peculiar compilation jobs, especially when working on low-level programming tasks (e.g. write bare-metal applications and kernels).
-
-It's better to rely on a tested and reviewed Software Manager for moving smoothly from one programming environment to another.  
+Rust comes in various "flavours": nightly, beta, stable. One should install the _Rust Toolchain_ with the official installer https://rustup.rs/ because one expects to have the possibility to enrich the programming environment easily with additional packages and "components" in order to perform very peculiar compilation jobs (like in low-level programming tasks e.g. write bare-metal applications and kernels).
+  
 
 ## A "Close Encounter" with RustyHermit ![Alt text](./hermitcore_logo.png "Apples-to-Oranges comparison")
 
@@ -105,9 +97,9 @@ One is _uhyve_ (https://github.com/hermitcore/uhyve) that is a custom hypervisor
 
 *Disclaimer*: The following amounts to a mere description of the _author's personal experience_ with this object.
 
-There has been a first round of exploration of RustyHermit potential following step by step the official documentation of the project.Unfortunately fetching RustyHermit's crate from Cargo Repository and using it as a dependency in a blank project resulted in repeatedly unsuccesful compilation attempts. Each iteration of the build project introduces new displayed errors and quite unclear messages from the prompts. 
+There has been a first round of exploration of RustyHermit potential following step by step the official documentation of the project. Unfortunately fetching RustyHermit's crate from Cargo Repository and using it as a dependency in a blank project resulted in repeatedly unsuccesful compilation attempts. Each iteration of the build project introduces new displayed errors and quite unclear messages from the prompts. 
 
-There have been ebbs and flow of succesful compilations with then unusable "hello world" unikernels or inexplicably failed compilations.History of this unfruitful quest is documented by the author's (@alessio-proietti) tickets on the official Issue Tracker of the project (https://github.com/hermitcore/rusty-hermit/issues).
+There have been ebbs and flow of succesful compilations with then unusable "hello world" unikernels or inexplicably failed compilations. History of this unfruitful quest is documented by the author's (@alessio-proietti) tickets on the official Issue Tracker of the project (https://github.com/hermitcore/rusty-hermit/issues).
 
 Later on, a second phase of the research started with the author initially cloning the original and complete repository of RustyHermit and then compiling the application code of the demo shipped with the repo. 
 This choice was forced after noting that configuration code and building options was present in the repository and the demo apps in fact relied heavily on this fine-tuned _corpus_ of code to work. 
@@ -117,11 +109,11 @@ _If it works, don't break it._
 ## A Second Attempt
 
 More recently the team behind rusty-hermit released a template demo project on which it is possible to iterate towards custom and arbirtary complicated kernels. 
+The author tried forcing the connectivity between various instances of rusty-hermit, he failed again. 
 
-So the author tried enforcing the connectivity between various instances of rusty-hermit, he failed again. 
-What perhaps is interesting is that the vanilla demo (and projects which don't need network) at least compiles and runs. You can find more information in details here https://github.com/hermitcore/rusty-demo.
+It is worth noting that the vanilla demo (and projects which don't need network) at least compiles and runs. You can find more information in details here https://github.com/hermitcore/rusty-demo.
 
-I'll report here some steps you should do to make a demo up and running.
+I'll copy here some steps you should do to make a demo up and running.
 
 1) Be sure to have rustup, QEMU installed as well as NASM assembler which is required to SMP in x86_64 architecture.
 
@@ -155,27 +147,26 @@ I'll report here some steps you should do to make a demo up and running.
 ## Playing around with a small non-trivial demo
 ### Envelope Encryption
 
-Envelope Encryption is a a cryptographic scheme in which a TTP hosts a hardened keyring with a master key (CMK) inside. What problem is Envelope Encryption supposed to solve?
+Envelope Encryption is a a cryptographic scheme in which a TTP hosts a hardened keyring with a master key (CMK) inside. What problem is Envelope Encryption supposed to solve? A client wants to do encryption and decryption of data but doesn't want to persist a secret data key. 
 
-A client wants to do encryption and decryption of data but doesn't want to persiste a secret key. The procol tries to satisfy request for encryption without storing keys.
+The procol tries to satisfy request for encryption without storing keys.
 
 It goes like this: The Server (the TTP) generate a fresh data key on behalf of the client and send it together with an encrypted copy over a secure authenticated channel. 
-The client now encrypts his data and makes a tuple out of data and corresponding encrypted data key and discard(!) the plaintext data key.The clients now stores the tuple. 
+The client encrypts its data and makes a tuple out of data and corresponding encrypted data key and discard(!) the plaintext data key. The clients stores the tuple. 
 
-Later on, when client needs to decrypt data it calls the Server sending over a secure authenticad channel the encrypted key, the Server responds sending back the plaintext version. Client now decrypts then discard the plaintext version of the secret key. 
+Later on, when client needs to decrypt data it calls the Server and sends over a secure authenticad channel the encrypted key, the Server responds sending back the plaintext version. Client now decrypts then discard the plaintext version of the secret data key. 
 
 I will not discuss how flawed can be Envelope encryption, I want only to let you know I assembled a small demo built on rusty-demo importing the Rust `dryoc` cryptographic crate, it worked. 
 
-Maybe in the future it can be made possible to have a networked Envelope Encryption server up and running based on rusty hermit Unikernel; could be interested because unikernels fit for a transient complex object which does heavy encryption/decryption efficiently and safely before fading away.
+In the future it can be made possible to have a networked Envelope Encryption server up and running based on rusty hermit Unikernel. Such a development could be interesting because Unikernels certainly fit for a transient complex object which does heavy encryption/decryption efficiently and safely before fading away.
 
 Here the author's take on Envelope Encryption based on rusty-demo: https://github.com/alessio-proietti/envelope-encryption-rusty-demo.
 
-For references, here https://enlear.academy/envelope-encryption-in-aws-d1a03eeed7c  a blog post to review how Envelope Encryption can be built on top of AWS KMS.
+For references, here a blog post to review how Envelope Encryption can be built on top of AWS KMS https://enlear.academy/envelope-encryption-in-aws-d1a03eeed7c.
 
 ## Conclusions
 
-RustyHermit is definitely too young and quite unstable framework for production yet it is promising. 
-Should be noted that Unikernel working PoC would be welcomed in the HPC space.
+RustyHermit is definitely too young and quite unstable framework for production yet it is promising. It should be noted that Unikernel working PoC would be welcomed in the HPC space.
 
 A final remark, Unikernels are not a _Panacea_ and nothing is. They are not bound to completely outperform Containers and the best outcome of Unikernels research is, perhaps, a contamination and a (eventually) merge of Containers and Unikernels best intuitions: _Less is more_.
 
