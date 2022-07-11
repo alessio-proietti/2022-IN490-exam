@@ -47,7 +47,9 @@ Luckily, improvements and research in computer engineering and in particular in 
 
 Jails were first implemented in FreeBSD as a consequence of the desire to establish clean compartmentation between services competing in a shared environment, tipically small, while confining the so called "omnipotent root" (Poul-Henning Kam).
 
-With jails and subsequent refining of the concept (aka containers) it is now possible to multiplex _userspace_ and implement _application-level_ segregation of environments for execution. 
+In Linux containers were implemented leveraging kernel feature such as chroot, namespaces and cgroups which offered finer control over resource quotas per process, control over reference directory and over resources' namespaces enhancing isolation.
+
+With jails and containers and subsequent refining of the concept (aka containers) it is now possible to multiplex _userspace_ and implement _application-level_ segregation of environments for execution. 
 
 Proponents and adopters of this relatively new architecture of computing are trying to fullfill the vision of VMs as _generic hosts_ for _multiple_, _indipendent_ and _specialized_ userspaces called _containers_ that should be as small as a single application and easy to manage, create, start, stop, destroy and connect together. **Crucially containers are supposed to be stateless and light.** 
 
